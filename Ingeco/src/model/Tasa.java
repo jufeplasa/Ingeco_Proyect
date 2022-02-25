@@ -33,8 +33,9 @@ public class Tasa {
 		return ea;
 	}
 	
-	public double efectivaAperdiodica(double ea, int nper) {
-		double iper=Math.pow((1+ea),1/nper)-1;
+	public double efectivaAperdiodica(double ea, double nper) {
+		double nperT=1/nper;
+		double iper=Math.pow((1+ea),nperT)-1;
 		return iper;
 	}
 	
