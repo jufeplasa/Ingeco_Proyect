@@ -12,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import model.Calculadora;
 
@@ -39,6 +41,32 @@ public class CalculadoraGUI {
 
 	@FXML
 	private ComboBox<String> indicesPer2;
+	
+	
+	 @FXML
+	    private RadioButton rbAhorro;
+
+	    @FXML
+	    private ToggleGroup rbAlicuota;
+
+	    @FXML
+	    private RadioButton rbCredito;
+
+	    @FXML
+	    private TextField valorTextField;
+
+	    @FXML
+	    private TextField vaTextField;
+
+	    @FXML
+	    private TextField nPlazoTextField;
+
+	    @FXML
+	    private TextField iTextField;
+
+	    @FXML
+	    private Label labelValorObjetivo;
+
 
 
 	public CalculadoraGUI() {
@@ -87,6 +115,25 @@ public class CalculadoraGUI {
 	public void vdt(ActionEvent event) {
 
 	}
+	
+	public void mostrarLabelVA() {
+		if(rbAhorro.isSelected()) {
+			labelValorObjetivo.setText("VF");
+		}
+		else if(rbCredito.isSelected()) {
+			labelValorObjetivo.setText("VP");
+		}
+	}
+
+    @FXML
+    public void calculoAlicuota(ActionEvent event) {
+    	 mostrarLabelVA();
+    	 String vo=valorTextField.getText();
+    	 String va=vaTextField.getText();
+    	 String tipo=labelValorObjetivo.getText();
+    	 String tasa=iTextField.getText();
+    	 String nplazo=nPlazoTextField.getText();
+    }
 
 
 	@FXML

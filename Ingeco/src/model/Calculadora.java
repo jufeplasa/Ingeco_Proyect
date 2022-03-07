@@ -3,6 +3,7 @@ package model;
 public class Calculadora {
 
 	private Tasa tasa;
+	private Alicuota alicuota;
 	public Calculadora() {
 		tasa=new Tasa();
 	}
@@ -17,14 +18,6 @@ public class Calculadora {
 				if(indiceC[0].equals("n")&&indiceF[0].equals("p")) {
 					tasaC=tasa.nominalAperiodica(tasaC, nperA);
 					indiceC[0]="p";
-					if(indiceC[1].equals("a")&&indiceF[1].equals("v")) {
-						tasaC=tasa.anticipadaAvencida(tasaC);
-						indiceC[1]="v";
-					}
-					else if(indiceC[1].equals("v")&&indiceF[1].equals("a")) {
-						tasaC=tasa.vencidaAanticipada(tasaC);
-						indiceC[1]="a";
-					}
 				}
 				else if (indiceC[0].equals("p")&&indiceF[0].equals("p")) {
 					if(indiceC[1].equals("v")&&indiceF[1].equals("a")) {
@@ -37,22 +30,8 @@ public class Calculadora {
 					}
 				}
 				else if(indiceC[0].equals("p")&&indiceF[0].equals("n")) {
-					if(indiceC[1].equals("a")&&indiceF[1].equals("v")){
-						tasaC=tasa.anticipadaAvencida(tasaC);
-						indiceC[1]="v";
 						tasaC=tasa.periodicaAnominal(tasaC, nperA);
 						indiceC[0]="n";
-					}
-					else if (indiceC[1].equals("v")&&indiceF[1].equals("a")) {
-						tasaC=tasa.vencidaAanticipada(tasaC);
-						indiceC[1]="a";
-						tasaC=tasa.periodicaAnominal(tasaC, nperA);
-						indiceC[0]="n";
-					}
-					else {
-						tasaC=tasa.periodicaAnominal(tasaC, nperA);
-						indiceC[0]="n";
-					}
 				}
 				else if(indiceC[0].equals("p")&&indiceF[0].equals("E")) {
 					if(indiceC[1].equals("a")){
@@ -64,7 +43,6 @@ public class Calculadora {
 						indiceC[0]="E";
 						indiceC[1]="A";
 					}
-
 				}
 				else if(indiceC[0].equals("E")&&indiceF[0].equals("p") ){
 					tasaC=tasa.efectivaAperdiodica(tasaC, nperA);
@@ -76,13 +54,7 @@ public class Calculadora {
 					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
 					indiceC=temp;
 				}
-				else if(indiceC[0].equals("n")&&indiceF[0].equals("E")) {
-					String [] temp= {"p","v"};
-					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
-					indiceC=temp;
-				}
 				else if(indiceC[0].equals("n")&&indiceF[0].equals("E")||indiceC[0].equals("E")&&(indiceF[0].equals("n"))) {
-
 					String [] temp= {"p","v"};
 					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
 					indiceC=temp;
@@ -98,4 +70,26 @@ public class Calculadora {
 		return tasaC;
 	}
 
+	
+	public double calcularAlicuota(String tipo, double vo, double va,double tasa, int nPlazo) {
+		alicuota=new Alicuota(va,vo,tasa,nPlazo);
+		double answer=0;
+		if(tipo.equalsIgnoreCase("ahorro")) {
+			if(vo==0) {
+				answer=alicuota.calculateVFconVA();
+			}
+			else {
+				answer=alicuota.calculateVAconVF();
+			}
+		}
+		else {
+			if(vo==0) {
+				answer=alicuota.calculateVPconVA();
+			}
+			else {
+				answer=alicuota.calculateVAconVP();
+			}
+		}
+		return answer;
+	}
 }

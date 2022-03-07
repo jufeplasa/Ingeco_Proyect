@@ -3,16 +3,14 @@ import java.lang.Math;
 
 public class Alicuota {
 	private double va;
-	private double vf;
-	private double vp;
+	private double vo;
 	private double i;
 	private int nplazo;
 
-	public Alicuota(double va, double vf, double vp, double i, int nplazo) {
+	public Alicuota(double va, double vo, double i, int nplazo) {
 		super();
 		this.va = va;
-		this.vf = vf;
-		this.vp = vp;
+		this.vo=vo;
 		this.i = i;
 		this.nplazo = nplazo;
 	}
@@ -21,12 +19,8 @@ public class Alicuota {
 		return va;
 	}
 
-	public double getVf() {
-		return vf;
-	}
-
-	public double getVp() {
-		return vp;
+	public double getVo() {
+		return vo;
 	}
 
 	public double getI() {
@@ -38,23 +32,23 @@ public class Alicuota {
 	}
 	
 	public double calculateVAconVP() {
-		va=vp*((i*Math.pow((1+i), nplazo))/(Math.pow((1+i),nplazo)-1));
+		va=vo*((i*Math.pow((1+i), nplazo))/(Math.pow((1+i),nplazo)-1));
 		return va;
 	}
 	
 	public double calculateVPconVA() {
-		vp=va*((Math.pow((1+i),nplazo)-1))/(i*Math.pow((1+i), nplazo));
-		return vp;
+		vo=va*((Math.pow((1+i),nplazo)-1))/(i*Math.pow((1+i), nplazo));
+		return vo;
 	}
 	
 	
 	public double calculateVFconVA() {
-		vf=va*(((Math.pow((1+i),nplazo)-1))/i);
-		return vf;
+		vo=va*(((Math.pow((1+i),(nplazo+1))-1))/i);
+		return vo;
 	}
 	
 	public double calculateVAconVF() {
-		va=vf*(i/((Math.pow((1+i),nplazo)-1)));
+		va=vo*(i/((Math.pow((1+i),(nplazo+1))-1)));
 		return va;
 	}
 

@@ -4,20 +4,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
-
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="243.0" layoutY="308.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="114.0" text="Calcular Alicuota" />
+      <Button layoutX="243.0" layoutY="308.0" mnemonicParsing="false" onAction="#calculoAlicuota" prefHeight="56.0" prefWidth="114.0" text="Calcular Alicuota" />
       <Label layoutX="263.0" layoutY="27.0" text="Valor Alicuota" />
-      <RadioButton layoutX="176.0" layoutY="266.0" mnemonicParsing="false" text="Inversion" />
-      <RadioButton layoutX="372.0" layoutY="266.0" mnemonicParsing="false" text="Credito" />
+      <RadioButton fx:id="rbAhorro" layoutX="176.0" layoutY="266.0" mnemonicParsing="false" text="Ahorro">
+         <toggleGroup>
+            <ToggleGroup fx:id="rbAlicuota" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rbCredito" layoutX="372.0" layoutY="266.0" mnemonicParsing="false" text="Credito" toggleGroup="$rbAlicuota" />
       <TextField fx:id="valorTextField" layoutX="298.0" layoutY="96.0" />
       <TextField fx:id="vaTextField" layoutX="298.0" layoutY="136.0" />
       <TextField fx:id="nPlazoTextField" layoutX="298.0" layoutY="175.0" />
       <TextField fx:id="iTextField" layoutX="300.0" layoutY="223.0" />
-      <Label layoutX="197.0" layoutY="100.0" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: black;" />
+      <Label fx:id="labelValorObjetivo" layoutX="197.0" layoutY="100.0" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: black;" />
       <Label alignment="CENTER" layoutX="197.0" layoutY="139.0" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: black;" text="VA" />
       <Label alignment="CENTER" layoutX="197.0" layoutY="178.0" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: black;" text="Nplazo" />
       <Label alignment="CENTER" layoutX="197.0" layoutY="226.0" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: black;" text="I%" />
