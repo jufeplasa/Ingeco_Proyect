@@ -13,6 +13,7 @@ public class Calculadora {
 		String [] indiceC=indiceI;
 		while(nperA!=nperF||!(indiceC[0].equals(indiceF[0]))||!(indiceC[1].equals(indiceF[1]) )){
 			if(nperA==nperF) {
+				
 				if(indiceC[0].equals("n")&&indiceF[0].equals("p")) {
 					tasaC=tasa.nominalAperiodica(tasaC, nperA);
 					indiceC[0]="p";
@@ -70,6 +71,11 @@ public class Calculadora {
 					indiceC[0]="p";
 					indiceC[1]="v";
 				}
+				else if(indiceC[0].equals("n")&&indiceF[0].equals("n")) {
+					String [] temp= {"p",indiceF[1]};
+					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
+					indiceC=temp;
+				}
 				else if(indiceC[0].equals("n")&&indiceF[0].equals("E")) {
 					String [] temp= {"p","v"};
 					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
@@ -81,6 +87,7 @@ public class Calculadora {
 					indiceC=temp;
 				}
 			}
+			
 		}
 		return tasaC;
 	}
