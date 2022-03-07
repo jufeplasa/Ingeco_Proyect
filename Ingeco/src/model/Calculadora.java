@@ -71,7 +71,6 @@ public class Calculadora {
 					indiceC[0]="p";
 					indiceC[1]="v";
 				}
-<<<<<<< Updated upstream
 				else if(indiceC[0].equals("n")&&indiceF[0].equals("n")) {
 					String [] temp= {"p",indiceF[1]};
 					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
@@ -82,25 +81,19 @@ public class Calculadora {
 					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
 					indiceC=temp;
 				}
-				else if(indiceC[0].equals("E")&&(indiceF[0].equals("n"))) {
-=======
 				else if(indiceC[0].equals("n")&&indiceF[0].equals("E")||indiceC[0].equals("E")&&(indiceF[0].equals("n"))) {
->>>>>>> Stashed changes
+
 					String [] temp= {"p","v"};
 					tasaC=calcularTasa( indiceC,temp, tasaC, nperI,  nperF);
 					indiceC=temp;
 				}
 			}
-<<<<<<< Updated upstream
-			
-=======
 			else {
 				String [] temp= {"E","A"};
 				tasaC=calcularTasa(indiceC,temp,tasaC,nperA,nperI);
 				indiceC=temp;
 				nperA=nperF;
 			}
->>>>>>> Stashed changes
 		}
 		return tasaC;
 	}
