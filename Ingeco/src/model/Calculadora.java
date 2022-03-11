@@ -77,6 +77,7 @@ public class Calculadora {
 		if(tipo.equalsIgnoreCase("ahorro")) {
 			if(vo==0) {
 				answer=alicuota.calculateVFconVA();
+				System.out.println("valor final");
 			}
 			else {
 				answer=alicuota.calculateVAconVF();

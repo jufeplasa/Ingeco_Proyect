@@ -125,6 +125,12 @@ public class CalculadoraGUI {
 			labelValorObjetivo.setText("VP");
 		}
 	}
+	
+	public String tipoOperacion() {
+		
+		return null;
+		
+	}
 
 	@FXML
 	public void calculoAlicuota(ActionEvent event) {
@@ -135,7 +141,7 @@ public class CalculadoraGUI {
 		String tipo=labelValorObjetivo.getText();
 		String tasa=iTextField.getText();
 		String nplazo=nPlazoTextField.getText();
-		if(vo.isEmpty()||va.isEmpty()||tipo.isEmpty()||tasa.isEmpty()||nplazo.isEmpty()) {
+		if((vo.isEmpty()&&va.isEmpty())||tipo.isEmpty()||tasa.isEmpty()||nplazo.isEmpty()) {
 			alert.setAlertType(AlertType.WARNING);
 			alert.setTitle("Warning Dialog");
 			alert.setHeaderText("There are missing information");
@@ -143,6 +149,20 @@ public class CalculadoraGUI {
 			alert.showAndWait();
 		}
 		else {
+			double vObjetivo=0;
+			double vAlicuota = 0;
+			double i=Double.parseDouble(tasa);
+			int nPlazo=Integer.parseInt(nplazo);
+			if(vo.isEmpty()) {
+				vObjetivo=0;
+				vAlicuota=Double.parseDouble(va);
+				valorTextField.setText(calculadora.calcularAlicuota(tipo, vObjetivo, vAlicuota, i, nPlazo)+"$");
+			}
+			else if(va.isEmpty()) {
+				vAlicuota=0;
+				vObjetivo=Double.parseDouble(vo);
+				vaTextField.setText(calculadora.calcularAlicuota(tipo, vObjetivo, vAlicuota, i, nPlazo)+"$");
+			}
 			
 		}
 
