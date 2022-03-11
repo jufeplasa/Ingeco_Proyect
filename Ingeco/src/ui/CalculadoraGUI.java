@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Calculadora;
 
@@ -41,31 +42,31 @@ public class CalculadoraGUI {
 
 	@FXML
 	private ComboBox<String> indicesPer2;
-	
-	
-	 @FXML
-	    private RadioButton rbAhorro;
 
-	    @FXML
-	    private ToggleGroup rbAlicuota;
 
-	    @FXML
-	    private RadioButton rbCredito;
+	@FXML
+	private RadioButton rbAhorro;
 
-	    @FXML
-	    private TextField valorTextField;
+	@FXML
+	private ToggleGroup rbAlicuota;
 
-	    @FXML
-	    private TextField vaTextField;
+	@FXML
+	private RadioButton rbCredito;
 
-	    @FXML
-	    private TextField nPlazoTextField;
+	@FXML
+	private TextField valorTextField;
 
-	    @FXML
-	    private TextField iTextField;
+	@FXML
+	private TextField vaTextField;
 
-	    @FXML
-	    private Label labelValorObjetivo;
+	@FXML
+	private TextField nPlazoTextField;
+
+	@FXML
+	private TextField iTextField;
+
+	@FXML
+	private Label labelValorObjetivo;
 
 
 
@@ -115,7 +116,7 @@ public class CalculadoraGUI {
 	public void vdt(ActionEvent event) {
 
 	}
-	
+
 	public void mostrarLabelVA() {
 		if(rbAhorro.isSelected()) {
 			labelValorObjetivo.setText("VF");
@@ -125,15 +126,27 @@ public class CalculadoraGUI {
 		}
 	}
 
-    @FXML
-    public void calculoAlicuota(ActionEvent event) {
-    	 mostrarLabelVA();
-    	 String vo=valorTextField.getText();
-    	 String va=vaTextField.getText();
-    	 String tipo=labelValorObjetivo.getText();
-    	 String tasa=iTextField.getText();
-    	 String nplazo=nPlazoTextField.getText();
-    }
+	@FXML
+	public void calculoAlicuota(ActionEvent event) {
+		Alert alert=new Alert(null); 
+		mostrarLabelVA();
+		String vo=valorTextField.getText();
+		String va=vaTextField.getText();
+		String tipo=labelValorObjetivo.getText();
+		String tasa=iTextField.getText();
+		String nplazo=nPlazoTextField.getText();
+		if(vo.isEmpty()||va.isEmpty()||tipo.isEmpty()||tasa.isEmpty()||nplazo.isEmpty()) {
+			alert.setAlertType(AlertType.WARNING);
+			alert.setTitle("Warning Dialog");
+			alert.setHeaderText("There are missing information");
+			alert.setContentText("Please complete the information");
+			alert.showAndWait();
+		}
+		else {
+			
+		}
+
+	}
 
 
 	@FXML
